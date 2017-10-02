@@ -23,13 +23,12 @@ extension BraveBrowserToolbarButtonActions {
     func respondToNewTab(action: UIAlertAction) {
         if PrivateBrowsing.singleton.isOn {
             PrivateBrowsing.singleton.exit()
-            return
         }
-        getApp().tabManager.addAdjacentTabAndSelect()
+        getApp().tabManager.addTabAndSelect()
     }
     
     func respondToNewPrivateTab(action: UIAlertAction) {
         PrivateBrowsing.singleton.enter()
-        getApp().tabManager.addAdjacentTabAndSelect()
+        getApp().tabManager.addTabAndSelect()
     }
 }
