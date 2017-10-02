@@ -185,19 +185,4 @@ class BraveBrowserBottomToolbar : BrowserToolbar {
 }
 
 // MARK: - Long Press Gesture Recognizer Handlers for Adding Tabs
-extension BraveBrowserBottomToolbar {
-    
-    func respondToNewTab(action: UIAlertAction) {
-        if PrivateBrowsing.singleton.isOn {
-            PrivateBrowsing.singleton.exit()
-            return
-        }
-        getApp().tabManager.addAdjacentTabAndSelect()
-    }
-    
-    func respondToNewPrivateTab(action: UIAlertAction) {
-        PrivateBrowsing.singleton.enter()
-        getApp().tabManager.addAdjacentTabAndSelect()
-    }
-    
-}
+extension BraveBrowserBottomToolbar: BraveBrowserToolbarButtonActions {}
