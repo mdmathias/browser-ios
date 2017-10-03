@@ -179,13 +179,14 @@ class TabsButton: UIControl {
         actionSheetController.addAction(cancelAction)
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            let newPrivateTabAction = UIAlertAction(title: Strings.NewPrivateTabTitle,
-                                                    style: .default,
-                                                    handler: respondToNewPrivateTab(action:))
-            actionSheetController.addAction(newPrivateTabAction)
+            if !PrivateBrowsing.singleton.isOn {
+                let newPrivateTabAction = UIAlertAction(title: Strings.NewPrivateTabTitle,
+                                                        style: .default,
+                                                        handler: respondToNewPrivateTab(action:))
+                actionSheetController.addAction(newPrivateTabAction)
+            }
             
-            let newTabTitle = PrivateBrowsing.singleton.isOn ? Strings.NewTabLeavePrivateTitle : Strings.NewTabTitle
-            let newTabAction = UIAlertAction(title: newTabTitle,
+            let newTabAction = UIAlertAction(title: Strings.NewTabTitle,
                                              style: .default,
                                              handler: respondToNewTab(action:))
             actionSheetController.addAction(newTabAction)
