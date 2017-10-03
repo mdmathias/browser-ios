@@ -21,14 +21,10 @@ protocol BraveBrowserToolbarButtonActions {
 // MARK: - Default Implementations
 extension BraveBrowserToolbarButtonActions {
     func respondToNewTab(action: UIAlertAction) {
-        if PrivateBrowsing.singleton.isOn {
-            PrivateBrowsing.singleton.exit()
-        }
         getApp().tabManager.addTabAndSelect()
     }
     
     func respondToNewPrivateTab(action: UIAlertAction) {
-        PrivateBrowsing.singleton.enter()
-        getApp().tabManager.addTabAndSelect()
+        getApp().browserViewController.switchBrowsingMode(toPrivate: true)
     }
 }
