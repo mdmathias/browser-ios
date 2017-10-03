@@ -102,13 +102,16 @@ class BraveBrowserBottomToolbar : BrowserToolbar {
                                          handler: nil)
         alertController.addAction(cancelAction)
         
-        let newPrivateTabAction = UIAlertAction(title: Strings.NewPrivateTabTitle,
-                                                style: .default,
-                                                handler: respondToNewPrivateTab(action:))
-        alertController.addAction(newPrivateTabAction)
+        if !PrivateBrowsing.singleton.isOn {
+            let newPrivateTabAction = UIAlertAction(title: Strings.NewPrivateTabTitle,
+                                                    style: .default,
+                                                    handler: respondToNewPrivateTab(action:))
+            alertController.addAction(newPrivateTabAction)
+        }
         
-        let newTabTitle = PrivateBrowsing.singleton.isOn ? Strings.NewTabLeavePrivateTitle : Strings.NewTabTitle
-        let newTabAction = UIAlertAction(title: newTabTitle,
+        
+        
+        let newTabAction = UIAlertAction(title: Strings.NewTabTitle,
                                          style: .default,
                                          handler: respondToNewTab(action:))
         alertController.addAction(newTabAction)
